@@ -20,7 +20,7 @@ std::string StripPrettyFunction(std::string prettyFunction);
 template <typename CollectionT>
 std::string CollectionToStr(const CollectionT& collection, const std::string delimiter = "")
 {
-    if (size(collection) == 0) {
+    if (collection.size() == 0) {
         return "";
     }
 
@@ -37,7 +37,7 @@ std::string CollectionToStr(const CollectionT& collection, const std::string del
 template <typename CollectionT, typename ToStringF>
 std::string CollectionToStr(const CollectionT& collection, ToStringF toStringFunction, const std::string delimiter = "")
 {
-    if (size(collection) == 0) {
+    if (collection.size() == 0) {
         return "";
     }
 
