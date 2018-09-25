@@ -26,7 +26,7 @@ std::string CollectionToStr(const CollectionT& collection, const std::string del
 
     std::stringstream ss;
     auto lastElem = prev(end(collection));
-    for (auto it = begin(collection); it != lastElem; ++it)
+    for (auto it = begin(collection); it != lastElem; ++it) {
         ss << *it << delimiter;
     }
     ss << *lastElem;
@@ -43,7 +43,7 @@ std::string CollectionToStr(const CollectionT& collection, ToStringF toStringFun
 
     std::stringstream ss;
     auto lastElem = prev(end(collection));
-    for (auto it = begin(collection); it != lastElem; ++it)
+    for (auto it = begin(collection); it != lastElem; ++it) {
         ss << toStringFunction(*it) << delimiter;
     }
     ss << toStringFunction(*lastElem) << delimiter;
