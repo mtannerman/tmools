@@ -10,11 +10,11 @@
 		'\t' << "Message: " << message);\
 	throw exceptionType(message, __FUNCTION__, __FILE__, __LINE__); 
 
-#define ASSERT(expression, message) if (!(expression)) { THROW(Assertion, message); }
-#define TEST_ASSERT(expression, message) if (!(expression)) { THROW(TestAssertion, message); } else { LOG(__FUNCTION__ << " PASSED"); }
+#define ASSERT(expression, message) if (!(expression)) { THROW(::tmools::Assertion, message); }
+#define TEST_ASSERT(expression, message) if (!(expression)) { THROW(::tmools::TestAssertion, message); } else { LOG(__FUNCTION__ << " PASSED"); }
 #define ASSERT_THROWN_EXCEPTION(command, exceptionType, message) { try { command; }\
  	catch (const exceptionType& ex) { LOG(__FUNCTION__ << " PASSED"); }\
-	catch(...) { THROW(TestAssertion, message); }}
+	catch(...) { THROW(::tmools::TestAssertion, message); }}
 
 #define THROW_IF(expression, exceptionType, message) if ((expression)) { THROW(exceptionType, message); }
 

@@ -20,10 +20,16 @@ std::string StripPrettyFunction(std::string prettyFunction);
 template <typename CollectionT>
 std::string CollectionToStr(const CollectionT& collection, const std::string delimiter = "")
 {
-    std::stringstream ss;
-    for (const auto& elem : collection) {
-        ss << elem << delimiter;
+    if (size(collection) == 0) {
+        return "";
     }
+
+    std::stringstream ss;
+    auto lastElem = prev(end(collection));
+    for (auto it = begin(collection); it != lastElem; ++it)
+        ss << *it << delimiter;
+    }
+    ss << *lastElem;
 
     return ss.str();
 }
@@ -31,10 +37,16 @@ std::string CollectionToStr(const CollectionT& collection, const std::string del
 template <typename CollectionT, typename ToStringF>
 std::string CollectionToStr(const CollectionT& collection, ToStringF toStringFunction, const std::string delimiter = "")
 {
-    std::stringstream ss;
-    for (const auto& elem : collection) {
-        ss << toStringFunction(elem) << delimiter;
+    if (size(collection) == 0) {
+        return "";
     }
+
+    std::stringstream ss;
+    auto lastElem = prev(end(collection));
+    for (auto it = begin(collection); it != lastElem; ++it)
+        ss << toStringFunction(*it) << delimiter;
+    }
+    ss << toStringFunction(*lastElem) << delimiter;
 
     return ss.str();
 }

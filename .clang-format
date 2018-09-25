@@ -1,0 +1,44 @@
+---
+Language: Cpp
+BasedOnStyle: LLVM
+BreakBeforeBraces: Linux
+ColumnLimit: 100
+SpaceBeforeParens: ControlStatements
+SpacesBeforeTrailingComments: 3
+Cpp11BracedListStyle: true
+Standard:        Cpp11
+IndentWidth:     3
+TabWidth:        3
+UseTab:          Never
+PointerAlignment: Left
+NamespaceIndentation: None
+SpaceBeforeAssignmentOperators: true
+# SpaceBeforeCpp11BracedList: false
+# SpaceBeforeCtorInitializerColon: true
+# SpaceBeforeInheritanceColon: true
+SpaceBeforeParens: Always
+# SpaceBeforeRangeBasedForLoopColon: true
+SpaceInEmptyParentheses: false
+SpacesInAngles: false
+SpacesInCStyleCastParentheses: false
+SpacesInContainerLiterals: false
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+AccessModifierOffset: -3
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: true
+AlignOperands: true
+AlignTrailingComments: true
+AllowShortBlocksOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+AlwaysBreakAfterReturnType: None
+AlwaysBreakBeforeMultilineStrings: false
+#BreakInheritanceList: BeforeComma
+BreakStringLiterals: true
+FixNamespaceComments: true
+MaxEmptyLinesToKeep: 2
+...
