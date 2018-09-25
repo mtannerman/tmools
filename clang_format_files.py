@@ -38,12 +38,12 @@ def clang_format_files(fileNames, isSilent):
                 subprocess.call(command, shell=True)
 
 def get_file_names_recursively(rootDir):
-    if not os.path.exisist(os.path.dirname(rootDir)):
+    if not os.path.exists(os.path.dirname(rootDir)):
         raise NotADirectoryError('{} is not a valid directory.'.format(rootDir))
 
     files = []
     for _ext in get_extensions_to_format():
-        files.extend(glob.glob(os.path.join(rootDir, '*.'.format(_ext))))
+        files.extend(glob.glob(os.path.join(rootDir, '*.{}'.format(_ext))))
 
     return files
 
@@ -65,7 +65,6 @@ if __name__ == "__main__":
     #parser.add_argument('--run', help='Run without cmake update and build.', action='store_true')
 
     args = parser.parse_args()
-    args.isSilent = True
     args.dir = os.path.abspath(args.dir)
 
     clang_format_files(get_files_to_format(args.dir, args.recursive), args.silent)
