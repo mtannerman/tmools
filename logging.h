@@ -46,7 +46,7 @@ std::string CollectionToStr(const CollectionT& collection, ToStringF toStringFun
     for (auto it = begin(collection); it != lastElem; ++it) {
         ss << toStringFunction(*it) << delimiter;
     }
-    ss << toStringFunction(*lastElem) << delimiter;
+    ss << toStringFunction(*lastElem);
 
     return ss.str();
 }
