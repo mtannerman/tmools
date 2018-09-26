@@ -30,7 +30,7 @@ inline double RandomDoubleGenerator::generate()
    return dis(gen);
 }
 
-inline double generate(const double lb, const double ub)
+inline double RandomDoubleGenerator::generate(const double lb, const double ub)
 {
    return lb + (ub - lb) * generate();
 }
