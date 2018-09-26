@@ -9,6 +9,7 @@
 // could use _MSC_VER for this
 #ifdef _WIN32
 #include <direct.h>
+#define NOMINMAX
 #include <windows.h>
 #define getcwd _getcwd // MSFT "deprecation" warning
 #else
