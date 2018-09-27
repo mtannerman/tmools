@@ -4,7 +4,8 @@
 #include <string>
 #include <sstream>
 
-#define STR(expression) (((::std::ostringstream *)&(::std::ostringstream() << "" << expression))->str())
+#include "STR.h"
+
 // #define LOG(msg) ::tmools::common_detail::Log(__PRETTY_FUNCTION__, STR(msg));
 #define CBR_FANCY_FUNCTION ::tmools::StripPrettyFunction(__FUNCTION__)
 #define LOG(msg) ::tmools::common_detail::Log(CBR_FANCY_FUNCTION, STR(msg));
