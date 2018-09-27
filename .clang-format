@@ -7,8 +7,8 @@ SpaceBeforeParens: ControlStatements
 SpacesBeforeTrailingComments: 3
 Cpp11BracedListStyle: true
 Standard:        Cpp11
-IndentWidth:     3
-TabWidth:        3
+IndentWidth:     4
+TabWidth:        4
 UseTab:          Never
 PointerAlignment: Left
 NamespaceIndentation: None
@@ -16,7 +16,6 @@ SpaceBeforeAssignmentOperators: true
 # SpaceBeforeCpp11BracedList: false
 # SpaceBeforeCtorInitializerColon: true
 # SpaceBeforeInheritanceColon: true
-SpaceBeforeParens: Never
 # SpaceBeforeRangeBasedForLoopColon: true
 SpaceInEmptyParentheses: false
 SpacesInAngles: false
@@ -24,21 +23,24 @@ SpacesInCStyleCastParentheses: false
 SpacesInContainerLiterals: false
 SpacesInParentheses: false
 SpacesInSquareBrackets: false
-AccessModifierOffset: -3
+AccessModifierOffset: -4
 AlignAfterOpenBracket: Align
-AlignConsecutiveAssignments: true
-AlignConsecutiveDeclarations: true
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
 AlignOperands: true
 AlignTrailingComments: true
 AllowShortBlocksOnASingleLine: false
 AllowShortCaseLabelsOnASingleLine: false
-AllowShortFunctionsOnASingleLine: None
-AllowShortIfStatementsOnASingleLine: false
-AllowShortLoopsOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: true
+AllowShortLoopsOnASingleLine: true
 AlwaysBreakAfterReturnType: None
 AlwaysBreakBeforeMultilineStrings: false
 #BreakInheritanceList: BeforeComma
 BreakStringLiterals: true
 FixNamespaceComments: true
 MaxEmptyLinesToKeep: 2
+AllowShortFunctionsOnASingleLine: true
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
+ConstructorInitializerIndentWidth: 4
+AlignAfterOpenBracket: DontAlign
 ...
