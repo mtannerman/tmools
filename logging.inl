@@ -4,6 +4,7 @@
 #include <memory>
 #include "file_operation.h"
 #include "exceptions.h"
+#include "string_format.h"
 
 namespace tmools
 {
@@ -69,9 +70,9 @@ std::string StripPrettyFunction(std::string prettyFunction)
 
 namespace common_detail
 {
-inline void Log(const std::string& function, const std::string& message)
+inline void Log(const std::string& function, const std::string& message, const int lineIndex)
 {
-	const auto full = STR("[" << function << "]  " << message << std::endl);
+	const auto full = ::tmools::format("[{}/{}] {}\n", function, lineIndex, message);
 	std::cout << full;
 	LogArchiver::GetInstance().Add(full);
 }

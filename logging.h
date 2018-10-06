@@ -8,7 +8,7 @@
 
 // #define LOG(msg) ::tmools::common_detail::Log(__PRETTY_FUNCTION__, STR(msg));
 #define CBR_FANCY_FUNCTION ::tmools::StripPrettyFunction(__FUNCTION__)
-#define LOG(msg) ::tmools::common_detail::Log(CBR_FANCY_FUNCTION, STR(msg));
+#define LOG(msg) ::tmools::common_detail::Log(CBR_FANCY_FUNCTION, STR(msg), __LINE__);
 
 
 #define DESC(x) #x << ": " << x
@@ -54,7 +54,7 @@ std::string CollectionToStr(const CollectionT& collection, ToStringF toStringFun
 
 namespace common_detail
 {
-void Log(const std::string& function, const std::string& message);
+void Log(const std::string& function, const std::string& message, const int lineIndex);
 }
 }
 
