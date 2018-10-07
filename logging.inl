@@ -99,13 +99,20 @@ private:
 };
 #endif
 
-inline void Log(const std::string& function, const std::string& message, const int lineIndex)
+std::string get_file_name_from_full_path(const std::string& fullPath)
 {
+    const size_t found = fullPath.find_last_of("/\\");
+    return fullPath.substr(found + 1U);
+}
+
+inline void Log(const std::string& fullPath, const std::string& function, const std::string& message, const int lineIndex)
+{
+    const std::string fileName = get_file_name_from_full_path(fullPath);
 #ifdef TMOOLS_COUNT_CALLS_OF_LOG
     const int newCount = ++CallCounter::GetInstance()[function];
-	const std::string full = ::tmools::format("[{}][{}/{}] {}\n", newCount, function, lineIndex, message);
+	const std::string full = ::tmools::format("[{}][{}/{}][{}] {}\n", newCount, fileName, lineIndex, function, message);
 #else
-	const std::string full = ::tmools::format("[{}/{}] {}\n", function, lineIndex, message);
+	const std::string full = ::tmools::format("[{}/{}][{}] {}\n", fileName, lineIndex, function, message);
 #endif
 	std::cout << full;
 	LogArchiver::GetInstance().Add(full);

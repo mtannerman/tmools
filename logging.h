@@ -8,12 +8,12 @@
 
 // #define LOG(msg) ::tmools::common_detail::Log(__PRETTY_FUNCTION__, STR(msg));
 #define CBR_FANCY_FUNCTION ::tmools::StripPrettyFunction(__FUNCTION__)
-#define LOG(msg) ::tmools::common_detail::Log(CBR_FANCY_FUNCTION, STR(msg), __LINE__);
+#define LOG(msg) ::tmools::common_detail::Log(__FILE__, CBR_FANCY_FUNCTION, STR(msg), __LINE__);
 
 
 #define DESC(x) #x << ": " << x
 
-#define TMOOLS_COUNT_CALLS_OF_LOG
+// #define TMOOLS_COUNT_CALLS_OF_LOG
 
 
 namespace tmools
@@ -57,7 +57,7 @@ std::string CollectionToStr(const CollectionT& collection, ToStringF toStringFun
 
 namespace common_detail
 {
-void Log(const std::string& function, const std::string& message, const int lineIndex);
+void Log(const std::string& fullPath, const std::string& function, const std::string& message, const int lineIndex);
 }
 }
 
