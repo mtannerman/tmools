@@ -2,6 +2,7 @@
 #include "../time_related.h"
 #include "../logging.h"
 #include "../optional/optional.hpp"
+#include "../finally.h"
 
 int main()
 {
@@ -17,7 +18,20 @@ int main()
     std::experimental::optional<int> a;
     a=2;
 
+    int b = 0;
+    tmools::Finally log_b([&b]{ LOG(DESC(b)); });
+    b = 2;
+
     LOG(DESC(a.value()));
+
+
+    {
+        tmools::Finally f([]{ LOG("Exiting."); });
+    }
+
+    {
+        LOG_SCOPE_ENDPOINTS("random brace");
+    }
 
     return 0;
 }

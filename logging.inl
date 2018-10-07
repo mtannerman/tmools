@@ -72,6 +72,7 @@ std::string StripPrettyFunction(std::string prettyFunction)
 	return ss.str();
 }
 
+
 namespace common_detail
 {
 bool count_calls()
@@ -105,19 +106,45 @@ std::string get_file_name_from_full_path(const std::string& fullPath)
     return fullPath.substr(found + 1U);
 }
 
-inline void Log(const std::string& fullPath, const std::string& function, const std::string& message, const int lineIndex)
+std::string LogMessage(const LogData& l)
 {
+    const std::string& fullPath = l.fullPath;
+    const std::string& function = l.function;
+    const std::string& message = l.message;
+    const int lineIndex = l.lineIndex;
+
     const std::string fileName = get_file_name_from_full_path(fullPath);
 #ifdef TMOOLS_COUNT_CALLS_OF_LOG
     const int newCount = ++CallCounter::GetInstance()[function];
-	const std::string full = ::tmools::format("[{}][{}/{}][{}] {}\n", newCount, fileName, lineIndex, function, message);
+	return ::tmools::format("[{}][{}/{}][{}] {}\n", newCount, fileName, lineIndex, function, message);
 #else
-	const std::string full = ::tmools::format("[{}/{}][{}] {}\n", fileName, lineIndex, function, message);
+	return ::tmools::format("[{}/{}][{}] {}\n", fileName, lineIndex, function, message);
 #endif
-	std::cout << full;
-	LogArchiver::GetInstance().Add(full);
+}
+
+void Log(const LogData& l)
+{
+    const std::string logMessage = LogMessage(l);
+	std::cout << logMessage;
+	LogArchiver::GetInstance().Add(logMessage);
 }
 
 
 }   // common_detail
+
+ScopedEndpointLogger::ScopedEndpointLogger(const LogData& logData) 
+    : logData(logData)
+{
+    const auto& l = logData;
+    const std::string beginMsg = "BEGIN " + l.message;
+    common_detail::Log(LogData(l.fullPath, l.function, beginMsg, l.lineIndex));    
+}
+
+ScopedEndpointLogger::~ScopedEndpointLogger()
+{
+    const auto& l = logData;
+    const std::string beginMsg = "END " + l.message;
+    common_detail::Log(LogData(l.fullPath, l.function, beginMsg, l.lineIndex));    
+}
+
 }   // tmools

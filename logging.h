@@ -7,9 +7,9 @@
 #include "STR.h"
 
 // #define LOG(msg) ::tmools::common_detail::Log(__PRETTY_FUNCTION__, STR(msg));
-#define CBR_FANCY_FUNCTION ::tmools::StripPrettyFunction(__FUNCTION__)
-#define LOG(msg) ::tmools::common_detail::Log(__FILE__, CBR_FANCY_FUNCTION, STR(msg), __LINE__);
-
+#define TMOOLS_FANCY_FUNCTION ::tmools::StripPrettyFunction(__FUNCTION__)
+#define LOG(msg) ::tmools::common_detail::Log(::tmools::LogData(__FILE__, TMOOLS_FANCY_FUNCTION, STR(msg), __LINE__));
+#define LOG_SCOPE_ENDPOINTS(msg) ::tmools::ScopedEndpointLogger(::tmools::LogData(__FILE__, TMOOLS_FANCY_FUNCTION, STR(msg), __LINE__));
 
 #define DESC(x) #x << ": " << x
 
@@ -55,9 +55,38 @@ std::string CollectionToStr(const CollectionT& collection, ToStringF toStringFun
     return ss.str();
 }
 
+struct LogData
+{
+    LogData(const std::string& fullPath,
+            const std::string& function,
+            const std::string& message,
+            const int lineIndex)
+        : fullPath(fullPath)
+        , function(function)
+        , message(message)
+        , lineIndex(lineIndex)
+    {}
+
+    const std::string fullPath;
+    const std::string function;
+    const std::string message;
+    const int lineIndex;
+};
+
+class ScopedEndpointLogger
+{
+public:
+    ScopedEndpointLogger(const LogData& l);
+    ~ScopedEndpointLogger();
+
+private:
+    const LogData logData;
+};
+
+
 namespace common_detail
 {
-void Log(const std::string& fullPath, const std::string& function, const std::string& message, const int lineIndex);
+void Log(const LogData& l);
 }
 }
 
