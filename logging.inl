@@ -6,6 +6,10 @@
 #include "exceptions.h"
 #include "string_format.h"
 
+#ifdef TMOOLS_COUNT_CALLS_OF_LOG
+#include <map>
+#endif
+
 namespace tmools
 {
 
@@ -70,9 +74,39 @@ std::string StripPrettyFunction(std::string prettyFunction)
 
 namespace common_detail
 {
+bool count_calls()
+{
+#ifdef TMOOLS_COUNT_CALLS_OF_LOG
+    return true;
+#else
+    return false;
+#endif
+}
+
+#ifdef TMOOLS_COUNT_CALLS_OF_LOG
+class CallCounter
+{
+public:
+    static std::map<std::string, int>& GetInstance()
+    {
+        static std::map<std::string, int> instance;
+        return instance;
+    }
+private:
+    CallCounter() = default;
+    CallCounter(const CallCounter&) = default;
+    CallCounter& operator=(const CallCounter&) = default;
+};
+#endif
+
 inline void Log(const std::string& function, const std::string& message, const int lineIndex)
 {
-	const auto full = ::tmools::format("[{}/{}] {}\n", function, lineIndex, message);
+#ifdef TMOOLS_COUNT_CALLS_OF_LOG
+    const int newCount = ++CallCounter::GetInstance()[function];
+	const std::string full = ::tmools::format("[{}][{}/{}] {}\n", newCount, function, lineIndex, message);
+#else
+	const std::string full = ::tmools::format("[{}/{}] {}\n", function, lineIndex, message);
+#endif
 	std::cout << full;
 	LogArchiver::GetInstance().Add(full);
 }

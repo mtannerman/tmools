@@ -13,6 +13,9 @@
 
 #define DESC(x) #x << ": " << x
 
+#define TMOOLS_COUNT_CALLS_OF_LOG
+
+
 namespace tmools
 {
 
@@ -59,6 +62,5 @@ void Log(const std::string& function, const std::string& message, const int line
 }
 
 #include "logging.inl"
-
 
 #endif   // TMOOLS_LOGGING_INCLUDED
