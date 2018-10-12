@@ -9,7 +9,7 @@
 // #define LOG(msg) ::tmools::common_detail::Log(__PRETTY_FUNCTION__, STR(msg));
 #define TMOOLS_FANCY_FUNCTION ::tmools::StripPrettyFunction(__FUNCTION__)
 #define LOG(msg) ::tmools::common_detail::Log(::tmools::LogData(__FILE__, TMOOLS_FANCY_FUNCTION, STR(msg), __LINE__));
-#define LOG_SCOPE_ENDPOINTS(msg) ::tmools::ScopedEndpointLogger(::tmools::LogData(__FILE__, TMOOLS_FANCY_FUNCTION, STR(msg), __LINE__));
+#define LOG_SCOPE_ENDPOINTS(msg) ::tmools::ScopedEndpointLogger tmools_scopedendpointlogger##__LINE__  (::tmools::LogData(__FILE__, TMOOLS_FANCY_FUNCTION, STR(msg), __LINE__));
 
 #define DESC(x) #x << ": " << x
 
