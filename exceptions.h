@@ -39,10 +39,10 @@ public:
 	{}
 	virtual ~RuntimeException() NOEXCEPT {}
 protected:
-	int line;
-	std::string file;
 	std::string message;
 	std::string function;
+	std::string file;
+	int line;
 };
 
 class Assertion : public RuntimeException
