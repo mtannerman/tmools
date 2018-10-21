@@ -18,13 +18,13 @@
 
 namespace tmools {
 
-inline bool IsDirectoryOrFileExist(const std::string& path)
+bool IsDirectoryOrFileExist(const std::string& path)
 {
     struct stat info;
     return stat(path.c_str(), &info) == 0;
 }
 
-inline bool IsDirectory(const std::string& path) 
+bool IsDirectory(const std::string& path) 
 {
     if (IsDirectoryOrFileExist(path)) {
         struct stat info;
@@ -36,7 +36,7 @@ inline bool IsDirectory(const std::string& path)
     return false;
 }
 
-inline bool CreateDirectory(const std::string& path) 
+bool CreateDirectory(const std::string& path) 
 {
 #if defined(__GNUG__)
 	return system(STR("mkdir -p " << path).c_str()) == 0;

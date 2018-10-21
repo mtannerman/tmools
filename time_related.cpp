@@ -1,4 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS   // mvsc is whining about std::localtime security
+#include "time_related.h"
 #include <ctime>
 #include <iomanip>
 #include "logging.h"
@@ -7,7 +8,7 @@
 namespace tmools
 {
 
-inline std::string GetDateTimeStr()
+std::string GetDateTimeStr()
 {
     auto t = std::time(nullptr);
     auto* tm_ = std::localtime(&t);
@@ -28,12 +29,12 @@ return str;
 }
 */    
 
-inline int64_t Time::ToSeconds() const
+int64_t Time::ToSeconds() const
 {
 	return 3600LL * hour + 60LL * min + sec;
 }
 
-inline Time Time::FromSeconds(int64_t seconds)
+Time Time::FromSeconds(int64_t seconds)
 {
 	int64_t h, m, s;
 	h = seconds / 3600LL;
@@ -44,7 +45,7 @@ inline Time Time::FromSeconds(int64_t seconds)
 	return Time(h, m, s, 0LL);
 }
 
-inline Time Time::FromMilliSeconds(int64_t seconds)
+Time Time::FromMilliSeconds(int64_t seconds)
 {
 	const auto millisecs = seconds % 1000LL;
 	auto t = FromSeconds(seconds / 1000LL);
@@ -52,12 +53,12 @@ inline Time Time::FromMilliSeconds(int64_t seconds)
 	return t;
 }
 
-inline void StopWatch::Restart()
+void StopWatch::Restart()
 {
     start = std::chrono::system_clock::now();
 }
 
-inline double StopWatch::ElapsedTime(const Unit unit)
+double StopWatch::ElapsedTime(const Unit unit)
 {
 	const auto timeDiff = std::chrono::system_clock::now() - start;
     switch (unit) {
@@ -74,7 +75,7 @@ inline double StopWatch::ElapsedTime(const Unit unit)
     return 0.;
 }
 
-inline std::string ZeroExtendedString(const int64_t val, const int nDigits = 2)
+std::string ZeroExtendedString(const int64_t val, const int nDigits = 2)
 {
     const std::string str = std::to_string(val);
     const int missing = nDigits - int(str.size());

@@ -31,12 +31,7 @@ class RuntimeException
 {
 public:
 	RuntimeException(const std::string& message, const std::string& function,
-		const std::string& file, int line)
-		: message(message)
-		, function(function)
-		, file(file)
-		, line(line)
-	{}
+		const std::string& file, int line);
 	virtual ~RuntimeException() NOEXCEPT {}
 protected:
 	std::string message;
@@ -49,99 +44,80 @@ class Assertion : public RuntimeException
 {
 public:
 	Assertion(const std::string& message, const std::string& function,
-		const std::string& file, int line) : RuntimeException(message, function, file, line) {}
+		const std::string& file, int line);
 
-	static std::string Type() NOEXCEPT {
-		return "tmools::Assertion";
-	}
+	static std::string Type() NOEXCEPT;
 };
 
 class TestAssertion : public RuntimeException
 {
 public:
 	TestAssertion(const std::string& message, const std::string& function,
-		const std::string& file, int line) : RuntimeException(message, function, file, line) {}
+		const std::string& file, int line);
 
-	static std::string Type() NOEXCEPT {
-		return "tmools::TestAssertion";
-	}
+	static std::string Type() NOEXCEPT;
 };
 
 class BadFunctionInput : public RuntimeException
 {
 public:
 	BadFunctionInput(const std::string& message, const std::string& function,
-		const std::string& file, int line) : RuntimeException(message, function, file, line) {}
+		const std::string& file, int line);
 
-	static std::string Type() NOEXCEPT {
-		return "tmools::BadFunctionInput";
-	}
+	static std::string Type() NOEXCEPT;
 };
 
 class BadProgramInput : public RuntimeException
 {
 public:
 	BadProgramInput(const std::string& message, const std::string& function,
-		const std::string& file, int line) : RuntimeException(message, function, file, line) {}
+		const std::string& file, int line);
 
-	static std::string Type() NOEXCEPT {
-		return "tmools::BadProgramInput";
-	}
+	static std::string Type() NOEXCEPT;
 };
 
 class UnreachableCode : public RuntimeException
 {
 public:
 	UnreachableCode(const std::string& message, const std::string& function,
-		const std::string& file, int line) : RuntimeException(message, function, file, line) {}
+		const std::string& file, int line);
 
-	static std::string Type() NOEXCEPT {
-		return "tmools::UnreachableCode";
-	}
+	static std::string Type() NOEXCEPT;
 };
 
 class IndexError : public RuntimeException
 {
 public:
 	IndexError(const std::string& message, const std::string& function,
-		const std::string& file, int line) : RuntimeException(message, function, file, line) {}
+		const std::string& file, int line);
 
-	static std::string Type() NOEXCEPT {
-		return "tmools::IndexError";
-	}
+	static std::string Type() NOEXCEPT;
 };
 
 class SizeMismatch : public RuntimeException
 {
 public:
 	SizeMismatch(const std::string& message, const std::string& function,
-		const std::string& file, int line) : RuntimeException(message, function, file, line) {}
+		const std::string& file, int line);
 
-	static std::string Type() NOEXCEPT {
-		return "tmools::SizeMismatch";
-	}
+	static std::string Type() NOEXCEPT;
 };
 
 class FileOperationFailure : public RuntimeException
 {
 public:
 	FileOperationFailure(const std::string& message, const std::string& function,
-		const std::string& file, int line) : RuntimeException(message, function, file, line) {}
-
-	static std::string Type() NOEXCEPT {
-		return "tmools::FileOperationFailure";
-	}
+		const std::string& file, int line);
+	static std::string Type() NOEXCEPT;
 };
 
 class UnImplementedFeature : public RuntimeException
 {
 public:
 	UnImplementedFeature(const std::string& message, const std::string& function,
-		const std::string& file, int line) : RuntimeException(message, function, file, line) {}
+		const std::string& file, int line);
 
-	static std::string Type() NOEXCEPT {
-		return "tmools::UnImplementedFeature";
-	}
+	static std::string Type() NOEXCEPT;
 };
 
 

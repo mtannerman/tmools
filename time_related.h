@@ -49,6 +49,4 @@ struct StopWatch
 
 std::ostream& operator<<(std::ostream& os, const tmools::Time& t);
 
-#include "time_related.inl"
-
 #endif   // TMOOLS_TIME_INCLUDED

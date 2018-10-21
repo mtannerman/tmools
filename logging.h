@@ -89,7 +89,4 @@ namespace common_detail
 void Log(const LogData& l);
 }
 }
-
-#include "logging.inl"
-
 #endif   // TMOOLS_LOGGING_INCLUDED

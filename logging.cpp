@@ -5,6 +5,7 @@
 #include "file_operation.h"
 #include "exceptions.h"
 #include "string_format.h"
+#include "logging.h"
 
 #ifdef TMOOLS_COUNT_CALLS_OF_LOG
 #include <map>
@@ -16,19 +17,19 @@ namespace tmools
 class LogArchiver
 {
 public:
-	inline static std::string LogArchivePath()
+	static std::string LogArchivePath()
 	{
 		// TODO
 		return "";
 	}
 
-	inline static LogArchiver& GetInstance()
+	static LogArchiver& GetInstance()
 	{
 		static LogArchiver instance;
 		return instance;
 	}
 
-	inline void Add(const std::string& logString)
+	void Add(const std::string& logString)
 	{
 		ofs << logString;
 	}
