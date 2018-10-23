@@ -11,7 +11,7 @@
 	throw exceptionType(message, __FUNCTION__, __FILE__, __LINE__); 
 
 #define ASSERT(expression, message) if (!(expression)) { THROW(::tmools::Assertion, STR(#expression << message)); }
-#define TEST_ASSERT(expression, message) if (!(expression)) { THROW(::tmools::TestAssertion, message); } else { LOG(__FUNCTION__ << " PASSED"); }
+#define TEST_ASSERT(expression, doLog) if (!(expression)) { THROW(::tmools::TestAssertion, STR(__FUNCTION__ << __LINE__<< " FAILED")); } else if ((doLog)) { LOG(__FUNCTION__ << " PASSED"); }
 #define ASSERT_THROWN_EXCEPTION(command, exceptionType, message) { try { command; }\
  	catch (const exceptionType& ex) { LOG(__FUNCTION__ << " PASSED"); }\
 	catch(...) { THROW(::tmools::TestAssertion, message); }}
